@@ -1,0 +1,90 @@
+postgres=# pslq
+postgres-# \l
+                                       Listado de base de datos
+  Nombre   |  Due±o   | Codificaci¾n |      Collate       |       Ctype        |      Privilegios
+-----------+----------+--------------+--------------------+--------------------+-----------------------
+ postgres  | postgres | UTF8         | Spanish_Spain.1252 | Spanish_Spain.1252 |
+ template0 | postgres | UTF8         | Spanish_Spain.1252 | Spanish_Spain.1252 | =c/postgres          +
+           |          |              |                    |                    | postgres=CTc/postgres
+ template1 | postgres | UTF8         | Spanish_Spain.1252 | Spanish_Spain.1252 | =c/postgres          +
+           |          |              |                    |                    | postgres=CTc/postgres
+(3 filas)
+postgres=# create database launchx_nodejs;
+CREATE DATABASE
+postgres=# \c launchx_nodejs;
+Ahora está conectado a la base de datos «launchx_nodejs» con el usuario «postgres».
+launchx_nodejs=# \dt
+No se encontró ninguna relación.
+launchx_nodejs=# create table explorers(id bigserial, username varchar(50));
+CREATE TABLE
+launchx_nodejs=# \dt
+         Listado de relaciones
+ Esquema |  Nombre   | Tipo  |  Due±o
+---------+-----------+-------+----------
+ public  | explorers | tabla | postgres
+(1 fila)
+
+
+launchx_nodejs=# insert into explorers(id, username) values (1, 'Explorer1');
+INSERT 0 1
+launchx_nodejs=# insert into explorers(id, username) values (1, 'Explorer1');
+INSERT 0 1
+launchx_nodejs=# insert into explorers(id, username) values (2, 'Explorer2');
+INSERT 0 1
+launchx_nodejs=# insert into explorers(id, username) values (3, 'Explorer3');
+INSERT 0 1
+launchx_nodejs=# insert into explorers(id, username) values (4, 'Explorer4');
+INSERT 0 1
+launchx_nodejs=# insert into explorers(id, username) values (5, 'Explorer5');
+INSERT 0 1
+launchx_nodejs=# select * from explorers;
+ id | username
+----+-----------
+  1 | Explorer1
+  1 | Explorer1
+  2 | Explorer2
+  3 | Explorer3
+  4 | Explorer4
+  5 | Explorer5
+(6 filas)
+
+
+launchx_nodejs=# select e.username from explorers e;
+ username
+-----------
+ Explorer1
+ Explorer1
+ Explorer2
+ Explorer3
+ Explorer4
+ Explorer5
+(6 filas)
+
+
+launchx_nodejs=# update explorers e set username = 'Explorer 1 Upd' where e.id=1;
+UPDATE 2
+launchx_nodejs=# select * from explorers;
+ id |    username
+----+----------------
+  2 | Explorer2
+  3 | Explorer3
+  4 | Explorer4
+  5 | Explorer5
+  1 | Explorer 1 Upd
+  1 | Explorer 1 Upd
+(6 filas)
+
+
+launchx_nodejs=# delete from explorers e where e.id=1;
+DELETE 2
+launchx_nodejs=# select * from explorers;
+ id | username
+----+-----------
+  2 | Explorer2
+  3 | Explorer3
+  4 | Explorer4
+  5 | Explorer5
+(4 filas)
+
+
+launchx_nodejs=#
